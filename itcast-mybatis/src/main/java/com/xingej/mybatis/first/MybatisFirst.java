@@ -2,6 +2,7 @@ package com.xingej.mybatis.first;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -71,6 +72,78 @@ public class MybatisFirst {
         }
 
         System.out.println("----->:\t" + users.get(2).getUsername());
+    }
+
+    // 插入一条记录
+    @Test
+    public void testInsertUser() {
+        // 1、通过session工厂来创建一个session
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        // 2、通过session会话来操作数据库
+        User user = new User();
+        user.setAddress("北京");
+        user.setBirthday(new Date());
+        user.setSex("1");
+        user.setUsername("浪子燕青");
+
+        try {
+            sqlSession.insert("test.insertUser", user);
+            // 提交事务，千万别忘记
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+
+        System.out.println("----user-----:\t" + user);
+    }
+
+    // 更新一条记录
+    @Test
+    public void testUpdateUser() {
+        // 1、通过session工厂来创建一个session
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        // 2、通过session会话来操作数据库
+        User user = new User();
+        user.setId(16);
+        user.setAddress("北京");
+        user.setBirthday(new Date());
+        user.setSex("1");
+        user.setUsername("故、新");
+
+        try {
+            sqlSession.update("test.updateUser", user);
+            // 提交事务，千万别忘记
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+
+        System.out.println("----user-----:\t" + user);
+    }
+
+    // 删除一条记录
+    @Test
+    public void testDeleteUser() {
+        // 1、通过session工厂来创建一个session
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        // 2、通过session会话来操作数据库
+        try {
+            sqlSession.update("test.deleteUser", 26);
+            // 提交事务，千万别忘记
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+
     }
 
 }
