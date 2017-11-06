@@ -20,6 +20,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	
 	<mappers>
 		<mapper resource="sqlMap/User.xml"/>
+		<!-- 注册 -->
+		<mapper resource="mapper/UserMapper.xml"/>
 	</mappers>
 	
 </configuration>
