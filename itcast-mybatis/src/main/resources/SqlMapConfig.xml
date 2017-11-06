@@ -7,11 +7,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<properties resource="db.properties"></properties>
 
 	<typeAliases>
-		<!-- type： 被映射的类型， alias: 就是你自定义的别名 单个别名的定义 -->
-		<typeAlias type="com.xingej.mybatis.po.User" alias="user" />
+		<!-- type： 被映射的类型， alias: 就是你自定义的别名 单个别名的定义
+		<typeAlias type="com.xingej.mybatis.po.User" alias="user" /> -->
 
 		<!-- 批量别名定义 指定包路径，自动扫描包下边的pojo，定义别名，别名默认为类名（首字母小写或大写） -->
-		<package name="cn.itcast.mybatis.po" />
+		<package name="com.xingej.mybatis.po" />
 
 	</typeAliases>
 
@@ -44,10 +44,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 		<!-- 通过class引用mapper接口 class：配置mapper接口全限定名 要求：需要mapper.xml和mapper.java同名并且在一个目录 
 			中 -->
-		<!-- <mapper class="cn.itcast.mybatis.mapper.UserMapper"/> -->
+		<!-- <mapper class="cn.xingej.mybatis.mapper.UserMapper"/> -->
 		<!-- 批量mapper配置 通过package进行自动扫描包下边的mapper接口， 要求：需要mapper.xml和mapper.java同名并且在一个目录 
 			中 -->
-		<package name="cn.itcast.mybatis.mapper" />
+		<!-- 
+		<package name="com.xingej.mybatis.mapper" /> -->	
 	</mappers>
 
 </configuration>

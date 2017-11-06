@@ -12,6 +12,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.xingej.mybatis.po.User;
+import com.xingej.mybatis.po.UserCustom;
+import com.xingej.mybatis.po.UserQueryVo;
 
 public class UserMapperTest {
     // 先创建一个会话工厂
@@ -105,6 +107,28 @@ public class UserMapperTest {
 
         userMapper.updateUser(user);
         session.commit();
+    }
+
+    // 通过包装的类型，查询用户的信息
+    @Test
+    public void testFindUserList() {
+        // 创建一个session
+        SqlSession session = sqlSessionFactory.openSession();
+
+        UserMapper userMapper = session.getMapper(UserMapper.class);
+
+        UserQueryVo userQueryVo = new UserQueryVo();
+
+        UserCustom userCustom = new UserCustom();
+        userCustom.setUsername("小");
+        userQueryVo.setUserCustom(userCustom);
+
+        List<User> userList = userMapper.findUserList(userQueryVo);
+
+        session.close();
+
+        System.out.println("----->:\t" + userList.size());
+
     }
 
 }
