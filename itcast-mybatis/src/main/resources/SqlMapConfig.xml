@@ -33,10 +33,21 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		</environment>
 	</environments>
 
+	<!--加载mapper映射
+	如果将和spring整合后，可以使用整合包中提供的mapper扫描器，此处的mappers不用配置了。
+	 -->
 	<mappers>
+		<!-- 通过resources一弄mapper的映射文件 -->
 		<mapper resource="sqlMap/User.xml" />
 		<!-- 注册 -->
 		<mapper resource="mapper/UserMapper.xml" />
+
+		<!-- 通过class引用mapper接口 class：配置mapper接口全限定名 要求：需要mapper.xml和mapper.java同名并且在一个目录 
+			中 -->
+		<!-- <mapper class="cn.itcast.mybatis.mapper.UserMapper"/> -->
+		<!-- 批量mapper配置 通过package进行自动扫描包下边的mapper接口， 要求：需要mapper.xml和mapper.java同名并且在一个目录 
+			中 -->
+		<package name="cn.itcast.mybatis.mapper" />
 	</mappers>
 
 </configuration>
