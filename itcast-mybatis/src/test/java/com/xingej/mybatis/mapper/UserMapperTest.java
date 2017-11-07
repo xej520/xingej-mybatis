@@ -28,6 +28,7 @@ public class UserMapperTest {
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
     }
 
+    // resultType：测试输出pojo对象
     // 根据用户ID来查询用户信息
     @Test
     public void testFindUserById() {
@@ -109,6 +110,7 @@ public class UserMapperTest {
         session.commit();
     }
 
+    // resultType：测试输出pojo列表
     // 通过包装的类型，查询用户的信息
     @Test
     public void testFindUserList() {
@@ -131,6 +133,7 @@ public class UserMapperTest {
 
     }
 
+    // resultType：测试输出简单类型，如int
     // 返回有多少条记录
     @Test
     public void testFindUserCount() {
