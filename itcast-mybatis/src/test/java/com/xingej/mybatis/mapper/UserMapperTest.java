@@ -131,4 +131,25 @@ public class UserMapperTest {
 
     }
 
+    // 返回有多少条记录
+    @Test
+    public void testFindUserCount() {
+        // 创建一个session
+        SqlSession session = sqlSessionFactory.openSession();
+
+        UserMapper userMapper = session.getMapper(UserMapper.class);
+
+        UserQueryVo userQueryVo = new UserQueryVo();
+
+        UserCustom userCustom = new UserCustom();
+        userCustom.setUsername("小");
+        userQueryVo.setUserCustom(userCustom);
+
+        int count = userMapper.findUserCount(userQueryVo);
+        session.close();
+
+        System.out.println("----->:\t" + count);
+
+    }
+
 }

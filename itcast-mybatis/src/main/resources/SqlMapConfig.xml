@@ -45,6 +45,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<!-- 通过class引用mapper接口 class：配置mapper接口全限定名 要求：需要mapper.xml和mapper.java同名并且在一个目录 
 			中 -->
 		<!-- <mapper class="cn.xingej.mybatis.mapper.UserMapper"/> -->
+		
 		<!-- 批量mapper配置 通过package进行自动扫描包下边的mapper接口， 要求：需要mapper.xml和mapper.java同名并且在一个目录 
 			中 -->
 		<!-- 

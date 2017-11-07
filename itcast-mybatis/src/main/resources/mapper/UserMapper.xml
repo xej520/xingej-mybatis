@@ -5,8 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- namespace命名空间，为了对sql语句进行隔离，方便管理 ，mapper开发dao方式，使用namespace有特殊作用 -->
 <!-- com.xingej.mybatis.mapper.UserMapper 这种方式，就是 全限定名 -->
 <mapper namespace="com.xingej.mybatis.mapper.UserMapper">
-	<!-- 在mapper.xml文件中配置很多的sql语句，执行每个sql语句时，封装为MappedStatement对象 mapper.xml以statement为单位管理sql语句 -->
-
+	<!-- 在mapper.xml文件中配置很多的sql语句，执行每个sql语句时， 封装为MappedStatement对象 mapper.xml以statement为单位管理sql语句 -->
 	<!-- 根据id查询用户信息 -->
 	<!-- id：唯一标识 一个statement #{}：表示 一个占位符，如果#{}中传入简单类型的参数，#{}中的名称随意 parameterType：输入 
 		参数的类型，通过#{}接收parameterType输入 的参数 resultType：输出结果 类型，不管返回是多条还是单条，指定单条记录映射的pojo类型 -->
@@ -53,7 +52,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 用户删除 -->
 	<delete id="deleteUser" parameterType="int">
-		delete from user where id=#{id}
+		delete from user where
+		id=#{id}
 	</delete>
 	<!-- 用户更新 要求：传入的user对象中包括 id属性值 -->
 	<update id="updateUser" parameterType="com.xingej.mybatis.po.User">
@@ -62,13 +62,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where id=#{id}
 	</update>
 
-	<!-- 自定义查询条件，查询用户信息 parameterType:指定包装类型
-	%${userCustom.username}%：userCustom是userQueryVo中的属性，通过OGNL获取属性的值
-	
-	 -->
+	<!-- 自定义查询条件，查询用户信息 parameterType:指定包装类型 %${userCustom.username}%：userCustom是userQueryVo中的属性，通过OGNL获取属性的值 -->
 	<select id="findUserList" parameterType="userQueryVo"
 		resultType="user">
-	select * from user where username like '%${userCustom.username}%'
+		select * from user where username like '%${userCustom.username}%'
+	</select>
+
+	<!-- 输出简单类型 功能：自定义查询条件，返回查询记录个数，通常用于实现 查询分页 -->
+	<select id="findUserCount" parameterType="userQueryVo" resultType="int">
+	
+	select count(*) from user where username like '%${userCustom.username}%'
 	</select>
 
 
